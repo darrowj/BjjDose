@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.jasondarrow.bjjdose.DoseActivity">
+    <item
+        android:id="@+id/action_cancel"
+        android:orderInCategory="100"
+        android:title="Cancel" />
+    <item
+        android:id="@+id/action_next"
+        android:orderInCategory="101"
+        android:title="Item" />
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="102"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+</menu>
