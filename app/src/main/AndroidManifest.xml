@@ -12,9 +12,7 @@
         <activity
             android:name=".DoseActivity"
             android:label="@string/title_activity_dose_list"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".DoseListActivity"
             android:label="@string/app_name"

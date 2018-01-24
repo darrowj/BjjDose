@@ -9,94 +9,200 @@
     tools:layout_editor_absoluteY="81dp"
     tools:showIn="@layout/activity_dose">
 
+
     <TextView
         android:id="@+id/labal_title"
-        android:layout_width="51dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Title:"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/text_title"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Title: " />
 
-    <Spinner
-        android:id="@+id/spinner_dose_category"
-        android:layout_width="354dp"
-        android:layout_height="19dp"
+    <EditText
+        android:id="@+id/text_title"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintStart_toStartOf="@+id/labal_title"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labal_title"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/label_category"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Category:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labal_title"
+        tools:text="Category: " />
+
+    <Spinner
+        android:id="@+id/spinner_dose_category"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/text_title"
+        app:layout_constraintStart_toEndOf="@+id/label_category"
         app:layout_constraintTop_toBottomOf="@+id/text_title" />
+
+    <TextView
+        android:id="@+id/label_Engage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Engage:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_category"
+        tools:text="Engage: " />
 
     <Spinner
         android:id="@+id/spinner_dose_engagement"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/spinner_dose_category"
-        app:layout_constraintStart_toStartOf="@+id/spinner_dose_category"
+        app:layout_constraintStart_toEndOf="@+id/label_Engage"
         app:layout_constraintTop_toBottomOf="@+id/spinner_dose_category" />
+
+    <TextView
+        android:id="@+id/label_Posture"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Posture:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_Engage"
+        tools:text="Posture: " />
 
     <Spinner
         android:id="@+id/spinner_dose_startPosture"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/spinner_dose_engagement"
-        app:layout_constraintStart_toStartOf="@+id/spinner_dose_engagement"
+        app:layout_constraintStart_toEndOf="@+id/label_Posture"
         app:layout_constraintTop_toBottomOf="@+id/spinner_dose_engagement" />
+
+    <TextView
+        android:id="@+id/label_offensivePosition"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Offence:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_Posture"
+        tools:text="Offensive: " />
 
     <Spinner
         android:id="@+id/spinner_dose_offensivePosition"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/spinner_dose_startPosture"
-        app:layout_constraintStart_toStartOf="@+id/spinner_dose_startPosture"
+        app:layout_constraintStart_toEndOf="@+id/label_offensivePosition"
         app:layout_constraintTop_toBottomOf="@+id/spinner_dose_startPosture" />
+
+    <TextView
+        android:id="@+id/label_guard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Guard:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_offensivePosition"
+        tools:text="Guard: " />
 
     <Spinner
         android:id="@+id/spinner_dose_guard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/spinner_dose_offensivePosition"
-        app:layout_constraintStart_toStartOf="@+id/spinner_dose_offensivePosition"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/label_guard"
         app:layout_constraintTop_toBottomOf="@+id/spinner_dose_offensivePosition" />
+
+    <TextView
+        android:id="@+id/label_sweep"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Sweep:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_guard"
+        tools:text="Sweep: " />
 
     <Spinner
         android:id="@+id/spinner_dose_sweep"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/spinner_dose_guard"
-        app:layout_constraintStart_toStartOf="@+id/spinner_dose_guard"
+        app:layout_constraintStart_toEndOf="@+id/label_sweep"
         app:layout_constraintTop_toBottomOf="@+id/spinner_dose_guard" />
+
+    <TextView
+        android:id="@+id/label_submission"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Submission:"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_sweep"
+        tools:text="Submission: " />
 
     <Spinner
         android:id="@+id/spinner_dose_submission"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/spinner_dose_sweep"
-        app:layout_constraintStart_toStartOf="@+id/spinner_dose_sweep"
+        app:layout_constraintStart_toEndOf="@+id/label_submission"
         app:layout_constraintTop_toBottomOf="@+id/spinner_dose_sweep" />
 
     <EditText
         android:id="@+id/multitext_dose_description"
-        android:layout_width="368dp"
-        android:layout_height="66dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="@+id/spinner_dose_submission"
-        app:layout_constraintStart_toStartOf="@+id/spinner_dose_submission"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_dose_submission" />
 
     <CheckBox
@@ -109,16 +215,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/multitext_dose_description" />
 
-    <EditText
-        android:id="@+id/text_title"
-        android:layout_width="308dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+
 </android.support.constraint.ConstraintLayout>
