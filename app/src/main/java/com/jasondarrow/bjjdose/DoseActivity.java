@@ -91,6 +91,11 @@ public class DoseActivity extends AppCompatActivity {
         });
 
         readDisplayStateValues();
+        if(savedInstanceState == null) {
+            saveOriginalNoteValues();
+        } else {
+            restoreOriginalNoteValues(savedInstanceState);
+        }
 
         textDoseTitle = (EditText) findViewById(R.id.text_title);
         textDoseDescription = (EditText) findViewById(R.id.multitext_dose_description);
@@ -118,7 +123,7 @@ public class DoseActivity extends AppCompatActivity {
         if(mIsNewDose)
             return;
         mOriginalCategory = mDose.getCategory();
-        mOriginalEngagement = mDose.getEngagement()
+        mOriginalEngagement = mDose.getEngagement();
         mOriginalStartingPosture = mDose.getPosture();
         mOriginalOffensivePosition = mDose.getOffensivePosition();
         mOriginalGuard = mDose.getGuard();
@@ -224,14 +229,24 @@ public class DoseActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.action_next);
+        int lastDoseIndex = DataManager.getInstance().getDoses().size() - 1;
+        item.setEnabled(mDosePosition < lastDoseIndex);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
     private void moveNext() {
         saveDose();
 
         ++mDosePosition;
         mDose = DataManager.getInstance().getDoses().get(mDosePosition);
 
-        save
+        saveOriginalNoteValues();
 
         displayDose(textDoseTitle, textDoseDescription);
+
+        invalidateOptionsMenu();
     }
 }

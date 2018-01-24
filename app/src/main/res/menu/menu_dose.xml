@@ -4,15 +4,14 @@
     tools:context="com.jasondarrow.bjjdose.DoseActivity">
     <item
         android:id="@+id/action_cancel"
+        android:icon="@android:drawable/ic_menu_revert"
         android:orderInCategory="100"
-        android:title="Cancel" />
+        android:title="Cancel"
+        app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/action_next"
+        android:icon="@android:drawable/ic_media_next"
         android:orderInCategory="101"
-        android:title="Item" />
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="102"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:title="Next"
+        app:showAsAction="ifRoom|withText" />
 </menu>
