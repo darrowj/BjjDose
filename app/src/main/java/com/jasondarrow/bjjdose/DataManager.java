@@ -1,9 +1,14 @@
 package com.jasondarrow.bjjdose;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.jasondarrow.bjjdose.BjjDoseDOA.*;
 
 /**
  * Created by darrowj on 12/30/17.
@@ -12,16 +17,88 @@ import java.util.List;
 public class DataManager {
 
     private static DataManager dmInstance = null;
-    private List<Dose> doses = new ArrayList<>();
-    private HashMap<String, Lookup> lookups = new HashMap<>();
+    private static List<Dose> doses = new ArrayList<>();
+    private static HashMap<String, Lookup> lookups = new HashMap<>();
 
     public static DataManager getInstance() {
         if(dmInstance == null) {
             dmInstance = new DataManager();
-            dmInstance.initLookups();
-            dmInstance.initDoses();
+            //dmInstance.initLookups();
+            //dmInstance.initDoses();
         }
         return dmInstance;
+    }
+
+    public static void loadFromDatabase(BjjDoseSQLiteHelper dbHelper) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        final String[] doseColumns = {
+                DoseEntity.COLUMN_ID,
+                DoseEntity.COLUMN_UID,
+                DoseEntity.COLUMN_TITLE,
+                DoseEntity.COLUMN_CATEGORY,
+                DoseEntity.COLUMN_ENGAGEMENT,
+                DoseEntity.COLUMN_POSTURE,
+                DoseEntity.COLUMN_OFFENSIVEPOSITION,
+                DoseEntity.COLUMN_SUBMISSION,
+                DoseEntity.COLUMN_GUARD,
+                DoseEntity.COLUMN_SWEEP,
+                DoseEntity.COLUMN_DESCRIPTION,
+                DoseEntity.COLUMN_PUBLISHED,
+                DoseEntity.COLUMN_CREATED};
+
+        final Cursor doseCursor = db.query(DoseEntity.TABLE_NAME, doseColumns,
+                null, null, null, null, DoseEntity.COLUMN_CREATED + " DESC");
+        loadDosesFromDatabase(doseCursor);
+
+        final String[] lookupColumns = {
+                LookupEntity.COLUMN_ID,
+                LookupEntity.COLUMN_TITLE,
+                LookupEntity.COLUMN_NAMES
+        };
+        final Cursor lookupCursor = db.query(LookupEntity.TABLE_NAME, lookupColumns,
+                null, null, null, null, LookupEntity.COLUMN_ID);
+        loadLookupsFromDatabase(lookupCursor);
+
+    }
+
+    private static void loadDosesFromDatabase(Cursor cursor) {
+        DataManager dm = getInstance();
+        dm.resetDoses();
+        while(cursor.moveToNext()) {
+            String id = cursor.getString(cursor.getColumnIndex(DoseEntity.COLUMN_ID));
+            String uid = cursor.getString(cursor.getColumnIndex(DoseEntity.COLUMN_UID));
+            String title = cursor.getString(cursor.getColumnIndex(DoseEntity.COLUMN_TITLE));
+            String category = cursor.getString(cursor.getColumnIndex(DoseEntity.COLUMN_CATEGORY));
+            String engagement = cursor.getString(cursor.getColumnIndex(DoseEntity.COLUMN_ENGAGEMENT));
+            String posture = cursor.getString(cursor.getColumnIndex(DoseEntity.COLUMN_POSTURE));
+            String offensivePosition = cursor.getString(cursor.getColumnIndex(DoseEntity.COLUMN_OFFENSIVEPOSITION));
+            String submission = cursor.getString(cursor.getColumnIndex(DoseEntity.COLUMN_SUBMISSION));
+            String guard = cursor.getString(cursor.getColumnIndex(DoseEntity.COLUMN_GUARD));
+            String sweep = cursor.getString(cursor.getColumnIndex(DoseEntity.COLUMN_SWEEP));
+            String description = cursor.getString(cursor.getColumnIndex(DoseEntity.COLUMN_DESCRIPTION));
+            String published = cursor.getString(cursor.getColumnIndex(DoseEntity.COLUMN_PUBLISHED));
+            String created = cursor.getString(cursor.getColumnIndex(DoseEntity.COLUMN_CREATED));
+
+            doses.add(new Dose(id, uid, title, category, engagement, posture, offensivePosition,
+                    submission, guard, sweep, description,published, created));
+        }
+        cursor.close();
+    }
+
+    private static void loadLookupsFromDatabase(Cursor cursor) {
+        DataManager dm = getInstance();
+        dm.resetLookups();
+        while(cursor.moveToNext()) {
+            String id = cursor.getString(cursor.getColumnIndex(LookupEntity.COLUMN_ID));
+            String title = cursor.getString(cursor.getColumnIndex(LookupEntity.COLUMN_TITLE));
+            String names = cursor.getString(cursor.getColumnIndex(LookupEntity.COLUMN_NAMES));
+
+            Lookup lookup = new Lookup(id , title,
+                    Arrays.asList(names.split("\\s*,\\s*")));
+            lookups.put(title, lookup);
+
+        }
+        cursor.close();
     }
 
     public HashMap<String, Lookup> getLookups() {

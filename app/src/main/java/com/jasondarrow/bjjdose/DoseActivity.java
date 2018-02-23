@@ -81,14 +81,7 @@ public class DoseActivity extends AppCompatActivity {
         setSpinnerValues(lookups.get("sweep").getNames(), spinnerSweep);
         setSpinnerValues(lookups.get("submission").getNames(), spinnerSubmission);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         readDisplayStateValues();
         if(savedInstanceState == null) {
